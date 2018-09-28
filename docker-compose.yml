@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+
+  elk:
+    image: sebp/elk:640
+    container_name: elk
+    hostname: elk
+    ports:
+      - "5601:5601"   # Kibana
+      - "9200:9200"   # elasticsearch JSON interface
+      - "5044:5044"   # logstash Beats interface
+      - "9300:9300"   # Elasticseach's transport interface
+    volumes:
+      - ./elk/30-output.conf:/etc/logstash/conf.d/30-output.conf
+      - ./elk/02-beats-input.conf:/etc/logstash/conf.d/02-beats-input.conf
+
+#  kolide:
+#    image: kolide/fleet
+#    ports:
+#      - "8080:8080"
