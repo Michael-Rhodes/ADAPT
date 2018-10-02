@@ -22,11 +22,4 @@ source ~/.bash_profile
 
 "Checking the Installation..."
 docker-compose --version
-"Does the docker version display? [y/n]"
-read user_input
-if [ user_input = "y"]; then
-	echo "Installation Successful!"
-else
-	echo "Installation Failed..."
-fi
 
