@@ -13,3 +13,5 @@ Then from  **~ADAPT/** directory, run this script:
 ./Setup-Environment/setup-ubuntu-script.sh
 ```
 ##
+
+If the docker-compose version is visible, the tools built successfully.
