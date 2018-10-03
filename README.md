@@ -14,4 +14,4 @@ Then from  **~ADAPT/** directory, run this script:
 ```
 ##
 
-If the docker-compose version is visible, the tools built successfully.
+If the docker-compose version is visible after running the script, the tools built successfully.
