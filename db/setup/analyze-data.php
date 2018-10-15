@@ -27,19 +27,28 @@ while($getGroupInformation = mysqli_fetch_assoc($dbGetGroupInformation)) {
 }
 echo "Group information in memory" . PHP_EOL;
 
+$malwareInfo = [];
+$dbGetMalwareInformation = $mysqli->query("SELECT * FROM `known_malware`");
+while($getMalwareInformation = mysqli_fetch_assoc($dbGetMalwareInformation)) {
+    $malwareInfo[$getMalwareInformation["Name"]] = $getMalwareInformation["ID"];
+}
+echo "Malware information in memory" . PHP_EOL;
+
 echo PHP_EOL . "--- Parsing group relationships ---" . PHP_EOL;
 
 foreach($groupInfo as $groupName => $groupID) {
-    //echo "Analyzing " . $groupName . "... " . PHP_EOL;
+    echo "Analyzing " . $groupName . "... " . PHP_EOL;
 
     $patternsToMap = [];
     $dbGetRelationshipInformation = $mysqli->query("SELECT * FROM `known_relationships` WHERE SourceID = '" . $groupID . "'");
     while($getRelationshipInformation = mysqli_fetch_assoc($dbGetRelationshipInformation)) {
-        $patternsToMap[] = $getRelationshipInformation["TargetID"];
+        if(strpos("malware", $getRelationshipInformation["TargetID"]) !== 0) {
+            $patternsToMap[] = ["direct", $getRelationshipInformation["TargetID"]];
+        }
     }
 
     foreach($patternsToMap as $patternID) {
-        echo "";
+        
     }
 }
 
