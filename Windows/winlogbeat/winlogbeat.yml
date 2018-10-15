@@ -20,24 +20,25 @@
 # log sources inspired by HELK (https://github.com/Cyb3rWard0g/HELK)
 # will be customized gather required artifacts for ATT&CK artifacts
 winlogbeat.event_logs:  
-  - name: Application
-    ignore_older: 30m
-  - name: Security
-    ignore_older: 30m
-  - name: System
-    ignore_older: 30m
+#  - name: Application
+#    ignore_older: 10m
+#  - name: Security
+#    ignore_older: 10m
+#  - name: System
+#    ignore_older: 10m
   - name: Microsoft-windows-sysmon/operational
-    ignore_older: 30m
+    ignore_older: 10m
   - name: Microsoft-windows-PowerShell/Operational
-    ignore_older: 30m
+    ignore_older: 10m
     event_id: 4103, 4104
   - name: Windows PowerShell
     event_id: 400,600
-    ignore_older: 30m
+    ignore_older: 10m
   - name: Microsoft-Windows-WMI-Activity/Operational
     event_id: 5857,5858,5859,5860,5861
-  - name: Microsoft-Windows-Windows Firewall With Advanced Security/Firewall
-    ignore_older: 30m
+    ignore_older: 10m
+#  - name: Microsoft-Windows-Windows Firewall With Advanced Security/Firewall
+#    ignore_older: 10m
 
 
 #==================== Elasticsearch template setting ==========================
