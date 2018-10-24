@@ -1,18 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LogTableComponent } from './log-table/log-table.component';
-import { LogTableRowComponent } from './log-table-row/log-table-row.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LogTableComponent,
-    LogTableRowComponent
+    AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
