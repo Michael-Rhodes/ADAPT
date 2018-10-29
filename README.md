@@ -1,21 +1,15 @@
 # ADAPT
 Active Detection of Advanced Persistent Threats
 
-## VM Setup / Configuration
-### Ubuntu:
+## Table of Contents:
 
-First make the script executable.
-```
-chmod +x /Setup-Environment/setup-ubuntu-script.sh
-```
-Then from  **~ADAPT/** directory, run this script:
-```
-./Setup-Environment/setup-ubuntu-script.sh
-```
-##
-
-If the docker-compose version is visible after running the script, the tools built successfully.
-
+1. [Team Meeting Notes](/Documentation/team_meeting_notes.md)
+2. [Database Docs](/Documentation/db_docs.md)
+3. [Windows](Windows/)
+4. [MySql Database](db/)
+5. [Setup Environment](Setup-Environment/)
+6. [Web Console](adapt-frontend/)
+7. [Elk](elk/)
 
 ## APT Workflow
 
