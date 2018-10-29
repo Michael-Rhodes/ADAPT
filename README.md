@@ -5,12 +5,11 @@ Active Detection of Advanced Persistent Threats
 
 1. [Team Meeting Notes](/Documentation/team_meeting_notes.md)
 2. [Database Docs](/Documentation/db_docs.md)
-3. [Project Readme] (README.md)
-4. [Windows](Windows/)
-5. [db](db/)
-6. [Setup Environment](Setup-Environment/)
-7. [Web Console](adapt-frontend/)
-8. [elk](elk/)
+3. [Windows](Windows/)
+4. [MySql Database](db/)
+5. [Setup Environment](Setup-Environment/)
+6. [Web Console](adapt-frontend/)
+7. [Elk](elk/)
 
 ## APT Workflow
 
