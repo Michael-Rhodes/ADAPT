@@ -3,7 +3,7 @@
 ## 2 Big Questions
 
  ### 1. How do we know that an APT is present?
- #### a. A struggle in answering this questions stems from the difference the types in malicious behavior. It's easier to detect bad behavior than pin point to APT specific behvaior.
+  We are trying to find difference between malicious APT behavior and non-APT behavior. If we know that it is an APT, its much easier to pin point which APT it is.
 
 ##
 
