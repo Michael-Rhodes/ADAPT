@@ -1,4 +1,4 @@
-# Project Dicussion Thoughts:
+# Project Dicussion Notes:
 
 ## 2 Big Questions
 
@@ -26,14 +26,18 @@
 ## Idea 1:
 
 ```
-[ num of techniques found / num of possible techniques ] * [ num of categories hit / num of categories ]
+ num of techniques found 	num of categories hit
+ --------------------------  *	---------------------
+ num of possible techniques 	  num of categories
 
 ```
 
 ## Idea 2 (refined):
 
 ```
-[ num of observed techniques / num of possible techniques ] * [ num of observed techniques / categories of possible techniques ] * [ categories of possible techniques / num of possible categories ]
+ num of observed techniques 	   num of observed techniques	        categories of possible techniques 
+ --------------------------   *  --------------------------------   *	---------------------------------
+ num of possible techniques      categories of possible techniques   	  num of possible categories
 
 ```
 
