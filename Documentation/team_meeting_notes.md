@@ -99,7 +99,7 @@
  	- Event Name
  	- Master Log
  	- [extra] non-APT events?
- - :mega" **This Week's Action Items** :mega:
+ - :mega: **This Week's Action Items** :mega:
 	- [ ] Build an API that takes log data and passes to tool 
 	- [ ] A tool that takes log data and makes APT determinations
 	- [ ] Web console for interacting with tools
