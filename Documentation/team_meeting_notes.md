@@ -20,7 +20,7 @@
 	- Access via SMB? (is it logged?)
 - *Powershell* on Windows 7 and up, XP seems dificult to get to work
 - [FIREEYE APT PAGE ](https://www.fireeye.com/current-threats/apt-groups.html)
-- This week's action items :mega:
+- :mega: **This Week's Action Items** :mega:
 	- [ ] Progress report
 
 ## Week 4 Notes:
@@ -30,7 +30,7 @@
 - We want to identify 2 APT groups per person
 - We **need** to integrate the ATT&CK framework with ELK
 - **DRAFT 1** is should be started. Looking at the intro & background
-- Tasks before next week's meeting:
+- :mega: **This week's Action Items** :mega:
 	- [ ] First Rough Draft
 	- [ ] Peer Review Doc
 	- [ ] Schedule Mtg. with Randy
@@ -79,7 +79,7 @@
 			- Requires [ setting up an email server, connecting SEIM to emails...]
  	- We decided on IDEA 1! :check:
 
-- #### Action Items for next week:
+- :mega: **This Week's Actino Items** :mega:
 	- [ ]  How do we get data out of the SEIM --> hopeful via POST/GET requests
 	- [ ]  Building the API (Python/or/PHP) to collect data
 	- [ ]  Send an email to IT about RLES acess for enviroment
@@ -90,7 +90,7 @@
 	- :white_check_mark: RLES access granted
 	- :white_check_mark: Watcher is up and running
 	- :thumbsup: Model is starting to take shape
- 		- working around duplicate traits
+ 		- Working around duplicate traits
     		- Suggestion: Scale back to specific traits
 		- Still working on figuring out the possible transitions
  - Database Tables:
