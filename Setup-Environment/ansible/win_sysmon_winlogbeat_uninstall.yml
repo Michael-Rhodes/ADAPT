@@ -1,0 +1,26 @@
+
+- name: Uninstall Sysmon and Winlogbeat
+  hosts: windows
+
+  # CHANGE THESE
+  vars:
+    elk_ip: "TESTYO:5044"
+    monitor_src_dir: "./Monitor"
+    monitor_dest_dir: 'C:\'
+
+  tasks:
+  - name: Uninstall Winlogbeat service
+    win_command: PowerShell.exe -ExecutionPolicy Bypass -File "C:\\Program Files\\Winlogbeat\\uninstall-service-winlogbeat.ps1"
+
+  - name: Remove Winlogbeat from ProgramFiles
+    win_file:
+      path: '{{ monitor_dest_dir }}\Monitor\Winlogbeat'
+      state: absent
+
+  - name: Uninstall Sysmon servive
+    win_command: '{{ monitor_dest_dir }}\Monitor\Sysmon\sysmon.exe -u'
+
+  - name: Remove monitor directory
+    win_file:
+      path: '{{ monitor_dest_dir }}\Monitor'
+      state: absent

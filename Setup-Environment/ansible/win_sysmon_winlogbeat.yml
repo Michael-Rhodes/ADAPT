@@ -1,0 +1,39 @@
+
+- name: Install Sysmon and Winlogbeat
+  hosts: windows
+
+  # CHANGE THESE
+  vars:
+    elk_ip: "192.168.70.155:5044"
+    monitor_src_dir: "./Monitor"
+    monitor_dest_dir: 'C:\'
+
+  tasks:
+  - name: Copy files to remote system
+    win_copy:
+      dest: '{{ monitor_dest_dir }}'
+      src: '{{ monitor_src_dir }}'
+
+  - name: Replace server location in winlogbeat.yml
+    win_lineinfile: 
+      path: '{{ monitor_dest_dir }}\Monitor\Winlogbeat\winlogbeat.yml'
+      regexp: '^\W{2}hosts:'
+      line: '  hosts: ["{{ elk_ip }}"]'
+
+  - name: Install Sysmon servive
+    win_command: '{{ monitor_dest_dir }}\Monitor\Sysmon\sysmon.exe -accepteula -i {{ monitor_dest_dir }}\Monitor\Sysmon\sysmonconfig.xml'
+
+#  NOTE: This installs the 64-bit version of winlogbeat
+  - name: Move Winlogbeat service to ProgramFiles
+    win_copy:
+      remote_src: yes
+      src: '{{ monitor_dest_dir }}\Monitor\Winlogbeat'
+      dest: 'C:\Program Files'
+
+  - name: Install Winlogbeat service
+    win_command: PowerShell.exe -ExecutionPolicy Bypass -File "C:\\Program Files\\Winlogbeat\\install-service-winlogbeat.ps1"
+
+  - name: Start winlogbeat
+    win_service:
+      name: winlogbeat
+      state: started
