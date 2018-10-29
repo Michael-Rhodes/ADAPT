@@ -30,7 +30,7 @@
 - We want to identify 2 APT groups per person
 - We **need** to integrate the ATT&CK framework with ELK
 - **DRAFT 1** is should be started. Looking at the intro & background
-- :mega: **This week's Action Items** :mega:
+- :mega: **This Week's Action Items** :mega:
 	- [ ] First Rough Draft
 	- [ ] Peer Review Doc
 	- [ ] Schedule Mtg. with Randy
@@ -79,14 +79,14 @@
 			- Requires [ setting up an email server, connecting SEIM to emails...]
  	- We decided on IDEA 1! :check:
 
-- :mega: **This Week's Actino Items** :mega:
+- :mega: **This Week's Action Items** :mega:
 	- [ ]  How do we get data out of the SEIM --> hopeful via POST/GET requests
 	- [ ]  Building the API (Python/or/PHP) to collect data
 	- [ ]  Send an email to IT about RLES acess for enviroment
 
 ## Week 8 Notes:
  
- - #### :mega: Team Progress Report :mega:
+ - #### :mega: **Team Progress Report** :mega:
 	- :white_check_mark: RLES access granted
 	- :white_check_mark: Watcher is up and running
 	- :thumbsup: Model is starting to take shape
@@ -99,7 +99,7 @@
  	- Event Name
  	- Master Log
  	- [extra] non-APT events?
- - #### Action Items for the week:
+ - :mega" **This Week's Action Items** :mega:
 	- [ ] Build an API that takes log data and passes to tool 
 	- [ ] A tool that takes log data and makes APT determinations
 	- [ ] Web console for interacting with tools
@@ -110,17 +110,19 @@
 
 ## Week 9 Notes:
 
- - :mega: Team Progress Report :mega:
-	- :white_check_mark: We can simulate an APT :white_check_mark:
-	- :white_check_mark: We can send logs to the API :white_check_mark:
-	- :white_check_mark: We can query API for DB storage :white_check_mark:
+ - :mega: **Team Progress Report** :mega:
+	- :white_check_mark: We can simulate an APT
+	- :white_check_mark: We can send logs to the API
+	- :white_check_mark: We can query API for DB storage
  - We need to:
 	- Start working on the final paper draft
 		- For example [ incorpate diagrams, new methodology approach, add to background ]
  - Deploying in test network
 	- Network is behind a NAT
 	- We will be using ansible playbooks for setting up collection in Windows
-  - **Network Diagram Notes:**
+ 
+**Network Diagram Notes:**
+
 ```   
    NAT (The internet) -> collection -> Edge Router (w/ virtual IPs in a DMZ)
   					^^^
