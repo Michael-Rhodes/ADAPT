@@ -15,3 +15,5 @@ Then from  **~ADAPT/** directory, run this script:
 ##
 
 If the docker-compose version is visible after running the script, the tools built successfully.
+
+![APT workflow](Documentation/screenshots/APT_Diagram.svg)
