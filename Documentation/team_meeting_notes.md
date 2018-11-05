@@ -147,3 +147,42 @@
 			   ~> Windows RM (Remote Management)			**Windows RM** - similar to SSH; will be used with ansible for pushing out scripts
 
 ```
+
+
+## Week 10 Notes
+
+## :mega: **Team Progress Report** :mega:
+	- [issue] ELK is getting 1500 hits in 10 mins, we think it has to do with credential dumping, 
+		- however, it only happens on one of the two vms, not both
+	- Web console is started, main landing page is created 
+	- Model has collected new data for analysis
+
+#### Meeting Notes
+	- Deploying to Metropolis Transit is being pushed back to next week. 
+		- We want to deploy a few ansible scripts for testing it out in the deployment of vms, just running the playbook
+	- Windows 7 and 10 Ansible scripts should be the same
+		- The scripts are being deploying with windowsRM
+	- API status: can accept data, test enviroment setup
+		- intregration from DB and tool to (between) the API works
+	- Model is working
+		- Except for the undefined behavior being added
+		- See earlier notes about probability formulas being used
+		- One outlier - POSEIDON GROUP
+			- they match 97.8% of events we have seen
+			- they are hyper inflated because of the low number of availble TTPs we have
+			- Normally flushed out by the model, but because of the credential dumping we think it has played a role
+			- the problem is that Poseidon doesn't have a lot of TTPs to match on and credential dumping is weighted heavily
+		- Time variance is not currently part of the model
+			- We may want to add in a time range during various periods
+				- ex) maybe on fridays we see a spike, but known maitenance happens then so its false positive
+					
+	- sysmon phones data back to the SEIM, and SEIM forwards data to API
+		- sysmon knows its a partically TTP
+		- if rule name exists, send over to SEIM
+
+## :mega: **This Week's Action Items** :mega:
+	- Let's deploy a bunch of windows 10 items, with no special configuration outside of the script to see if it fixes log issue
+		- We think its an artifact of one of the configurations on the box
+	- Add existing log data to web app for the demo
+	
+ 
