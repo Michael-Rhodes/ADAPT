@@ -9,7 +9,7 @@ fieldnames = ("APT Group Name", "Matching Events", "Total Events", "% of Events"
 reader = csv.DictReader(csv_file, fieldnames)
 for row in reader:
     json.dump(row, json_file)
-    json_file.write('\n')
+    json_file.write(', \n')
 
 
 
