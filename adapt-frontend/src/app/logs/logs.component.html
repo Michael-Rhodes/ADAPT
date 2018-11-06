@@ -8,79 +8,84 @@
     <h1>APT Stats:</h1>
     <br>
     <mat-form-field style="width: 100%;">
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Log Data">
     </mat-form-field>
 
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
 
       <!--- Note that these columns can be defined in any order.
             The actual rendered columns are set as a property on the row definition" -->
       <!-- ['group', 'final_value', 'matching_events', 'total_events', 
         'percent_of_events', 'matching_ttps', 'available_ttps', 'percent_of_ttps', 'coverage', 'percent_of_coverage' ];
       -->
+
+
       <!-- Group Column -->
       <ng-container matColumnDef="group">
-        <th mat-header-cell *matHeaderCellDef> Group </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Group </th>
         <td mat-cell *matCellDef="let element"> {{element.group}} </td>
       </ng-container>
 
       <!-- Final Value Column -->
       <ng-container matColumnDef="final_value">
-        <th mat-header-cell *matHeaderCellDef> Final Value </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Final Value </th>
         <td mat-cell *matCellDef="let element"> {{element.final_value}} </td>
       </ng-container>
 
       <!-- Matching Events Column -->
       <ng-container matColumnDef="matching_events">
-        <th mat-header-cell *matHeaderCellDef> Matchng Events </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Matchng Events </th>
         <td mat-cell *matCellDef="let element"> {{element.matching_events}} </td>
       </ng-container>
 
       <!-- Total Events Column -->
       <ng-container matColumnDef="total_events">
-        <th mat-header-cell *matHeaderCellDef> Total Events </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Events </th>
         <td mat-cell *matCellDef="let element"> {{element.total_events}} </td>
       </ng-container>
 
       <!-- % of Events Column -->
       <ng-container matColumnDef="percent_of_events">
-        <th mat-header-cell *matHeaderCellDef> % of Events</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> % of Events</th>
         <td mat-cell *matCellDef="let element"> {{element.percent_of_events}} </td>
       </ng-container>
 
       <!-- Mathcing TTPs Column -->
       <ng-container matColumnDef="matching_ttps">
-        <th mat-header-cell *matHeaderCellDef> Matching TTPs </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Matching TTPs </th>
         <td mat-cell *matCellDef="let element"> {{element.matching_ttps}} </td>
       </ng-container>
 
       <!-- Available Column -->
       <ng-container matColumnDef="available_ttps">
-        <th mat-header-cell *matHeaderCellDef> Available TTPs </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Available TTPs </th>
         <td mat-cell *matCellDef="let element"> {{element.available_ttps}} </td>
       </ng-container>
 
       <!-- % of TTPs Column -->
       <ng-container matColumnDef="percent_of_ttps">
-        <th mat-header-cell *matHeaderCellDef> % of TTPs </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> % of TTPs </th>
         <td mat-cell *matCellDef="let element"> {{element.available_ttps}} </td>
       </ng-container>
 
       <!-- Coverage Column -->
       <ng-container matColumnDef="coverage">
-        <th mat-header-cell *matHeaderCellDef> Coverage </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Coverage </th>
         <td mat-cell *matCellDef="let element"> {{element.coverage}} </td>
       </ng-container>
 
       <!-- % of Coverage Column -->
       <ng-container matColumnDef="percent_of_coverage">
-        <th mat-header-cell *matHeaderCellDef> % of Coverage </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> % of Coverage </th>
         <td mat-cell *matCellDef="let element"> {{element.percent_of_coverage}} </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
 
 
     <br>

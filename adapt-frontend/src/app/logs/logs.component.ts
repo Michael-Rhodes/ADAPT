@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {MatTableDataSource} from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {MatPaginator, MatSort,MatTableDataSource} from '@angular/material';
 
 export interface LogData {
   // Matching Events	Total Events	% of Events	Matching TTPs	Available TTPs	% of TTPs	Coverage	% of Coverage	Final value
@@ -101,15 +101,27 @@ export class LogsComponent implements OnInit {
   
     displayedColumns: string[] = ['group', 'final_value', 'matching_events', 'total_events', 
     'percent_of_events', 'matching_ttps', 'available_ttps', 'percent_of_ttps', 'coverage', 'percent_of_coverage' ];
-    dataSource = new MatTableDataSource(LOG_DATA);
+    dataSource: MatTableDataSource<LogData>;
+    //dataSource = new MatTableDataSource(LOG_DATA);
+    @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild(MatSort) sort: MatSort;
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
   
-  constructor() { }
+  constructor() { 
+    // Assign the data to the data source for the table to render
+    this.dataSource = new MatTableDataSource(LOG_DATA);
+  }
 
   ngOnInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
+
 
 }
