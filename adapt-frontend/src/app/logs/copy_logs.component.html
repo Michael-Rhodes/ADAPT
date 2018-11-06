@@ -1,0 +1,962 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+  <li class="breadcrumb-item"><a routerLink="/about">About</a></li>
+  <li class="breadcrumb-item"><a routerLink="/logs">Logs</a></li>
+  <li class="breadcrumb-item active">Log_Data</li>
+</ol>
+<h1>APT Stats:</h1>
+<br>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Matching Events</th>
+      <th scope="col">Total Events</th>
+      <th scope="col">% of Events</th>
+      <th scope="col">Matching TTPs</th>
+      <th scope="col">Available TTPs</th>
+      <th scope="col">% of TTPs</th>
+      <th scope="col">Coverage</th>
+      <th scope="col">% of Coverage</th>
+      <th scope="col">Final value</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr class="table-primary">
+      <th scope="row"> Lazarus Group </th>
+        <td>  19454</td>
+        <td>  19953</td>
+        <td>  97.5</td>
+        <td>  12</td>
+        <td> 74</td>
+        <td>  16.22</td>
+        <td>  6/11</td>
+        <td>  54.55</td>
+        <td>  8.62</td>
+      </tr>
+    <tr class="table-primary">
+      <th scope="row"> menuPass </th>
+        <td>  19418</td>
+        <td>  19953</td>
+        <td>  97.32</td>
+        <td>   11</td>
+        <td> 68</td>
+        <td>  16.18</td>
+        <td>  6/11</td>
+        <td>  54.55</td>
+        <td>  8.59
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> APT28 </th>
+      <td>  19445</td>
+      <td>  19953</td>
+      <td>  97.45</td>
+      <td>   11</td>
+      <td> 87</td>
+      <td>  12.64</td>
+      <td>  6/11</td>
+      <td>  54.55</td>
+      <td>  6.72
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Patchwork </th>
+      <td>  19562</td>
+      <td>  19953</td>
+      <td>  98.04</td>
+      <td>   11</td>
+      <td> 58</td>
+      <td>  18.97</td>
+      <td>  6/11</td>
+      <td>  54.55</td>
+      <td>  10.14
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Deep Panda </th>
+      <td>  19368</td>
+      <td>  19953</td>
+      <td>  97.07</td>
+      <td>   10</td>
+      <td> 42</td>
+      <td>  23.81</td>
+      <td>  6/11</td>
+      <td>  54.55</td>
+      <td>  12.61
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> APT29 </th>
+      <td>  19539</td>
+      <td>  19953</td>
+      <td>  97.93</td>
+      <td>   10</td>
+      <td> 71</td>
+      <td>  14.08</td>
+      <td>  6/11</td>
+      <td>  54.55</td>
+      <td>  7.52
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Threat Group-3390 </th>
+      <td>  19592</td>
+      <td>  19953</td>
+      <td>  98.19</td>
+      <td>   10</td>
+      <td> 54</td>
+      <td>  18.52</td>
+      <td>  6/11</td>
+      <td>  54.55</td>
+      <td>  9.92
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> OilRig </th>
+      <td>  19398</td>
+      <td>  19953</td>
+      <td>  97.22</td>
+      <td>   10</td>
+      <td> 67</td>
+      <td>  14.93</td>
+      <td>  5/11</td>
+      <td>  45.45</td>
+      <td>  6.6
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Leviathan </th>
+      <td>  19207</td>
+      <td>  19953</td>
+      <td>  96.26</td>
+      <td>   9</td>
+      <td> 60</td>
+      <td>  15</td>
+      <td>  6/11</td>
+      <td>  54.55</td>
+      <td>  7.88
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Turla </th>
+      <td>  270</td>
+      <td>  19953</td>
+      <td>  1.35</td>
+      <td>   9</td>
+      <td> 58</td>
+      <td>  15.52</td>
+      <td>  5/11</td>
+      <td>  45.45</td>
+      <td>  0.1
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Dragonfly 2.0 </th>
+      <td>  19370</td>
+      <td>  19953</td>
+      <td>  97.08</td>
+      <td>   9</td>
+      <td> 41</td>
+      <td>  21.95</td>
+      <td>  5/11</td>
+      <td>  45.45</td>
+      <td>  9.69
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> APT3 </th>
+      <td>  19350</td>
+      <td>  19953</td>
+      <td>  96.98</td>
+      <td>   8</td>
+      <td> 57</td>
+      <td>  14.04</td>
+      <td>  5/11</td>
+      <td>  45.45</td>
+      <td>  6.19
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Axiom </th>
+      <td>  19102</td>
+      <td>  19953</td>
+      <td>  95.73</td>
+      <td>   8</td>
+      <td> 40</td>
+      <td>  20</td>
+      <td>  5/11</td>
+      <td>  45.45</td>
+      <td>  8.7
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Magic Hound </th>
+      <td>  19124</td>
+      <td>  19953</td>
+      <td>  95.85</td>
+      <td>   7</td>
+      <td> 25</td>
+      <td>  28</td>
+      <td>  4/11</td>
+      <td>  36.36</td>
+      <td>  9.76
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> APT1 </th>
+      <td>  19301</td>
+      <td>  19953</td>
+      <td>  96.73</td>
+      <td>   7</td>
+      <td> 30</td>
+      <td>  23.33</td>
+      <td>  5/11</td>
+      <td>  45.45</td>
+      <td>  10.26
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Honeybee </th>
+      <td>  282</td>
+      <td>  19953</td>
+      <td>  1.41</td>
+      <td>   7</td>
+      <td> 22</td>
+      <td>  31.82</td>
+      <td>  5/11</td>
+      <td>  45.45</td>
+      <td>  0.2
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> DarkHydrus </th>
+      <td>  186</td>
+      <td>  19953</td>
+      <td>  0.93</td>
+      <td>   7</td>
+      <td> 21</td>
+      <td>  33.33</td>
+      <td>  4/11</td>
+      <td>  36.36</td>
+      <td>  0.11
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> admin@338 </th>
+      <td>  356</td>
+      <td>  19953</td>
+      <td>  1.78</td>
+      <td>   7</td>
+      <td> 30</td>
+      <td>  23.33</td>
+      <td>  5/11</td>
+      <td>  45.45</td>
+      <td>  0.19
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> TA459 </th>
+      <td>  551</td>
+      <td>  19953</td>
+      <td>  2.76</td>
+      <td>   7</td>
+      <td> 39</td>
+      <td>  17.95</td>
+      <td>  5/11</td>
+      <td>  45.45</td>
+      <td>  0.23
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> RTM </th>
+      <td>  491</td>
+      <td>  19953</td>
+      <td>  2.46</td>
+      <td>   7</td>
+      <td> 27</td>
+      <td>  25.93</td>
+      <td>  5/11</td>
+      <td>  45.45</td>
+      <td>  0.29
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> FIN7 </th>
+      <td>  19390</td>
+      <td>  19953</td>
+      <td>  97.18</td>
+      <td>   7</td>
+      <td> 42</td>
+      <td>  16.67</td>
+      <td>  6/11</td>
+      <td>  54.55</td>
+      <td>  8.83
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Elderwood </th>
+      <td>  133</td>
+      <td>  19953</td>
+      <td>  0.67</td>
+      <td>   7</td>
+      <td> 54</td>
+      <td>  12.96</td>
+      <td>  5/11</td>
+      <td>  45.45</td>
+      <td>  0.04
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Molerats </th>
+      <td>  19078</td>
+      <td>  19953</td>
+      <td>  95.61</td>
+      <td>   7</td>
+      <td> 27</td>
+      <td>  25.93</td>
+      <td>  6/11</td>
+      <td>  54.55</td>
+      <td>  13.52
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Dark Caracal </th>
+      <td>  487</td>
+      <td>  19953</td>
+      <td>  2.44</td>
+      <td>   6</td>
+      <td> 37</td>
+      <td>  16.22</td>
+      <td>  5/11</td>
+      <td>  45.45</td>
+      <td>  0.18
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Ke3chang </th>
+      <td>  19017</td>
+      <td>  19953</td>
+      <td>  95.31</td>
+      <td>   6</td>
+      <td> 31</td>
+      <td>  19.35</td>
+      <td>  4/11</td>
+      <td>  36.36</td>
+      <td>  6.71
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Naikon </th>
+      <td>  293</td>
+      <td>  19953</td>
+      <td>  1.47</td>
+      <td>   6</td>
+      <td> 24</td>
+      <td>  25</td>
+      <td>  4/11</td>
+      <td>  36.36</td>
+      <td>  0.13
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Strider </th>
+      <td>  19232</td>
+      <td>  19953</td>
+      <td>  96.39</td>
+      <td>   6</td>
+      <td> 31</td>
+      <td>  19.35</td>
+      <td>  4/11</td>
+      <td>  36.36</td>
+      <td>  6.78
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Lotus Blossom </th>
+      <td>  371</td>
+      <td>  19953</td>
+      <td>  1.86</td>
+      <td>   6</td>
+      <td> 22</td>
+      <td>  27.27</td>
+      <td>  5/11</td>
+      <td>  45.45</td>
+      <td>  0.23
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> DragonOK </th>
+      <td>  352</td>
+      <td>  19953</td>
+      <td>  1.76</td>
+      <td>   6</td>
+      <td> 28</td>
+      <td>  21.43</td>
+      <td>  4/11</td>
+      <td>  36.36</td>
+      <td>  0.14
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> FIN8 </th>
+      <td>  19352</td>
+      <td>  19953</td>
+      <td>  96.99</td>
+      <td>   6</td>
+      <td> 34</td>
+      <td>  17.65</td>
+      <td>  4/11</td>
+      <td>  36.36</td>
+      <td>  6.22
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> APT19 </th>
+      <td>  145</td>
+      <td>  19953</td>
+      <td>  0.73</td>
+      <td>   6</td>
+      <td> 19</td>
+      <td>  31.58</td>
+      <td>  4/11</td>
+      <td>  36.36</td>
+      <td>  0.08
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> PittyTiger </th>
+      <td>  129</td>
+      <td>  19953</td>
+      <td>  0.65</td>
+      <td>   6</td>
+      <td> 26</td>
+      <td>  23.08</td>
+      <td>  5/11</td>
+      <td>  45.45</td>
+      <td>  0.07
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Rancor </th>
+      <td>  230</td>
+      <td>  19953</td>
+      <td>  1.15</td>
+      <td>   6</td>
+      <td> 20</td>
+      <td>  30</td>
+      <td>  5/11</td>
+      <td>  45.45</td>
+      <td>  0.16
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> APT37 </th>
+      <td>  19060</td>
+      <td>  19953</td>
+      <td>  95.52</td>
+      <td>   6</td>
+      <td> 45</td>
+      <td>  13.33</td>
+      <td>  6/11</td>
+      <td>  54.55</td>
+      <td>  6.95
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> PLATINUM </th>
+      <td>  19054</td>
+      <td>  19953</td>
+      <td>  95.49</td>
+      <td>   6</td>
+      <td> 35</td>
+      <td>  17.14</td>
+      <td>  5/11</td>
+      <td>  45.45</td>
+      <td>  7.44
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Dragonfly </th>
+      <td>  19016</td>
+      <td>  19953</td>
+      <td>  95.3</td>
+      <td>   6</td>
+      <td> 18</td>
+      <td>  33.33</td>
+      <td>  5/11</td>
+      <td>  45.45</td>
+      <td>  14.44
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Cobalt Group </th>
+      <td>  324</td>
+      <td>  19953</td>
+      <td>  1.62</td>
+      <td>   6</td>
+      <td> 30</td>
+      <td>  20</td>
+      <td>  5/11</td>
+      <td>  45.45</td>
+      <td>  0.15
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Dust Storm </th>
+      <td>  327</td>
+      <td>  19953</td>
+      <td>  1.64</td>
+      <td>   6</td>
+      <td> 30</td>
+      <td>  20</td>
+      <td>  4/11</td>
+      <td>  36.36</td>
+      <td>  0.12
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> APT32 </th>
+      <td>  432</td>
+      <td>  19953</td>
+      <td>  2.17</td>
+      <td>   6</td>
+      <td> 35</td>
+      <td>  17.14</td>
+      <td>  3/11</td>
+      <td>  27.27</td>
+      <td>  0.1
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Carbanak </th>
+      <td>  19283</td>
+      <td>  19953</td>
+      <td>  96.64</td>
+      <td>   6</td>
+      <td> 27</td>
+      <td>  22.22</td>
+      <td>  6/11</td>
+      <td>  54.55</td>
+      <td>  11.71
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> BRONZE BUTLER </th>
+      <td>  19493</td>
+      <td>  19953</td>
+      <td>  97.69</td>
+      <td>   6</td>
+      <td> 38</td>
+      <td>  15.79</td>
+      <td>  5/11</td>
+      <td>  45.45</td>
+      <td>  7.01
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> MuddyWater </th>
+      <td>  19296</td>
+      <td>  19953</td>
+      <td>  96.71</td>
+      <td>   5</td>
+      <td> 30</td>
+      <td>  16.67</td>
+      <td>  5/11</td>
+      <td>  45.45</td>
+      <td>  7.33
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Putter Panda </th>
+      <td>  144</td>
+      <td>  19953</td>
+      <td>  0.72</td>
+      <td>   5</td>
+      <td> 19</td>
+      <td>  26.32</td>
+      <td>  5/11</td>
+      <td>  45.45</td>
+      <td>  0.09
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Stealth Falcon </th>
+      <td>  19066</td>
+      <td>  19953</td>
+      <td>  95.55</td>
+      <td>   5</td>
+      <td> 14</td>
+      <td>  35.71</td>
+      <td>  3/11</td>
+      <td>  27.27</td>
+      <td>  9.31
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Moafee </th>
+      <td>  126</td>
+      <td>  19953</td>
+      <td>  0.63</td>
+      <td>   5</td>
+      <td> 17</td>
+      <td>  29.41</td>
+      <td>  4/11</td>
+      <td>  36.36</td>
+      <td>  0.07
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Gorgon Group </th>
+      <td>  224</td>
+      <td>  19953</td>
+      <td>  1.12</td>
+      <td>   5</td>
+      <td> 15</td>
+      <td>  33.33</td>
+      <td>  4/11</td>
+      <td>  36.36</td>
+      <td>  0.14
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Sowbug </th>
+      <td>  19230</td>
+      <td>  19953</td>
+      <td>  96.38</td>
+      <td>   5</td>
+      <td> 19</td>
+      <td>  26.32</td>
+      <td>  4/11</td>
+      <td>  36.36</td>
+      <td>  9.22
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Sandworm Team </th>
+      <td>  217</td>
+      <td>  19953</td>
+      <td>  1.09</td>
+      <td>   5</td>
+      <td> 23</td>
+      <td>  21.74</td>
+      <td>  4/11</td>
+      <td>  36.36</td>
+      <td>  0.09
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> APT18 </th>
+      <td>  291</td>
+      <td>  19953</td>
+      <td>  1.46</td>
+      <td>   5</td>
+      <td> 26</td>
+      <td>  19.23</td>
+      <td>  4/11</td>
+      <td>  36.36</td>
+      <td>  0.1
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Orangeworm </th>
+      <td>  236</td>
+      <td>  19953</td>
+      <td>  1.18</td>
+      <td>   4</td>
+      <td> 23</td>
+      <td>  17.39</td>
+      <td>  2/11</td>
+      <td>  18.18</td>
+      <td>  0.04
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Charming Kitten </th>
+      <td>  168</td>
+      <td>  19953</td>
+      <td>  0.84</td>
+      <td>   4</td>
+      <td> 8</td>
+      <td>  50</td>
+      <td>  3/11</td>
+      <td>  27.27</td>
+      <td>  0.11
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Poseidon Group </th>
+      <td>  19285</td>
+      <td>  19953</td>
+      <td>  96.65</td>
+      <td>   4</td>
+      <td> 7</td>
+      <td>  57.14</td>
+      <td>  4/11</td>
+      <td>  36.36</td>
+      <td>  20.08
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> APT30 </th>
+      <td>  73</td>
+      <td>  19953</td>
+      <td>  0.37</td>
+      <td>   4</td>
+      <td> 29</td>
+      <td>  13.79</td>
+      <td>  4/11</td>
+      <td>  36.36</td>
+      <td>  0.02
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Thrip </th>
+      <td>  349</td>
+      <td>  19953</td>
+      <td>  1.75</td>
+      <td>   4</td>
+      <td> 13</td>
+      <td>  30.77</td>
+      <td>  3/11</td>
+      <td>  27.27</td>
+      <td>  0.15
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> FIN6 </th>
+      <td>  19066</td>
+      <td>  19953</td>
+      <td>  95.55</td>
+      <td>   3</td>
+      <td> 17</td>
+      <td>  17.65</td>
+      <td>  3/11</td>
+      <td>  27.27</td>
+      <td>  4.6
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Suckfly </th>
+      <td>  19223</td>
+      <td>  19953</td>
+      <td>  96.34</td>
+      <td>   3</td>
+      <td> 11</td>
+      <td>  27.27</td>
+      <td>  3/11</td>
+      <td>  27.27</td>
+      <td>  7.17
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> CopyKittens </th>
+      <td>  191</td>
+      <td>  19953</td>
+      <td>  0.96</td>
+      <td>   3</td>
+      <td> 11</td>
+      <td>  27.27</td>
+      <td>  2/11</td>
+      <td>  18.18</td>
+      <td>  0.05
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Cleaver </th>
+      <td>  19007</td>
+      <td>  19953</td>
+      <td>  95.26</td>
+      <td>   3</td>
+      <td> 14</td>
+      <td>  21.43</td>
+      <td>  3/11</td>
+      <td>  27.27</td>
+      <td>  5.57
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Gamaredon Group </th>
+      <td>  61</td>
+      <td>  19953</td>
+      <td>  0.31</td>
+      <td>   3</td>
+      <td> 17</td>
+      <td>  17.65</td>
+      <td>  3/11</td>
+      <td>  27.27</td>
+      <td>  0.01
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Scarlet Mimic </th>
+      <td>  87</td>
+      <td>  19953</td>
+      <td>  0.44</td>
+      <td>   3</td>
+      <td> 19</td>
+      <td>  15.79</td>
+      <td>  3/11</td>
+      <td>  27.27</td>
+      <td>  0.02
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> FIN10 </th>
+      <td>  120</td>
+      <td>  19953</td>
+      <td>  0.6</td>
+      <td>   3</td>
+      <td> 9</td>
+      <td>  33.33</td>
+      <td>  3/11</td>
+      <td>  27.27</td>
+      <td>  0.05
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> APT33 </th>
+      <td>  105</td>
+      <td>  19953</td>
+      <td>  0.53</td>
+      <td>   3</td>
+      <td> 13</td>
+      <td>  23.08</td>
+      <td>  4/11</td>
+      <td>  36.36</td>
+      <td>  0.04
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Night Dragon </th>
+      <td>  51</td>
+      <td>  19953</td>
+      <td>  0.26</td>
+      <td>   2</td>
+      <td> 9</td>
+      <td>  22.22</td>
+      <td>  2/11</td>
+      <td>  18.18</td>
+      <td>  0.01
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> APT17 </th>
+      <td>  51</td>
+      <td>  19953</td>
+      <td>  0.26</td>
+      <td>   2</td>
+      <td> 7</td>
+      <td>  28.57</td>
+      <td>  2/11</td>
+      <td>  18.18</td>
+      <td>  0.01
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Winnti Group </th>
+      <td>  229</td>
+      <td>  19953</td>
+      <td>  1.15</td>
+      <td>   2</td>
+      <td> 7</td>
+      <td>  28.57</td>
+      <td>  2/11</td>
+      <td>  18.18</td>
+      <td>  0.06
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> PROMETHIUM </th>
+      <td>  236</td>
+      <td>  19953</td>
+      <td>  1.18</td>
+      <td>   2</td>
+      <td> 3</td>
+      <td>  66.67</td>
+      <td>  2/11</td>
+      <td>  18.18</td>
+      <td>  0.14
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> FIN5 </th>
+      <td>  19175</td>
+      <td>  19953</td>
+      <td>  96.1</td>
+      <td>   2</td>
+      <td> 18</td>
+      <td>  11.11</td>
+      <td>  2/11</td>
+      <td>  18.18</td>
+      <td>  1.94
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Darkhotel </th>
+      <td>  10</td>
+      <td>  19953</td>
+      <td>  0.05</td>
+      <td>   1</td>
+      <td> 5</td>
+      <td>  20</td>
+      <td>  1/11</td>
+      <td>  9.09</td>
+      <td>  0
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Threat Group-1314 </th>
+      <td>  48</td>
+      <td>  19953</td>
+      <td>  0.24</td>
+      <td>   1</td>
+      <td> 4</td>
+      <td>  25</td>
+      <td>  1/11</td>
+      <td>  9.09</td>
+      <td>  0.01
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> Leafminer </th>
+      <td>  18949</td>
+      <td>  19953</td>
+      <td>  94.97</td>
+      <td>   1</td>
+      <td> 11</td>
+      <td>  9.09</td>
+      <td>  1/11</td>
+      <td>  9.09</td>
+      <td>  0.78
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> NEODYMIUM </th>
+      <td>  47</td>
+      <td>  19953</td>
+      <td>  0.24</td>
+      <td>   1</td>
+      <td> 10</td>
+      <td>  10</td>
+      <td>  2/11</td>
+      <td>  18.18</td>
+      <td>  0
+      </td>
+      </tr>
+      <tr class="table-primary">
+      <th scope="row"> APT16 </th>
+      <td>  3</td>
+      <td>  19953</td>
+      <td>  0.02</td>
+      <td>   1</td>
+      <td> 5</td>
+      <td>  20</td>
+      <td>  1/11</td>
+      <td>  9.09</td>
+      <td>  0
+      </td>
+    </tr>
+  </tbody>
+</table> 

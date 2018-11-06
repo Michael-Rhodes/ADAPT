@@ -2,4 +2,7 @@
 table {
     width: 100%;
   }
-  
+.log-format{
+  padding-left: 30px;
+  padding-right: 30px;
+}
