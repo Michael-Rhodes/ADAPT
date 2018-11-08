@@ -1,2 +1,3 @@
 # ignore config.php files
+.DS_Store
 config.php
