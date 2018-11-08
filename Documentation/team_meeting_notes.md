@@ -149,7 +149,7 @@
 ```
 
 
-## Week 10 Notes
+##Week 10 Notes
 
 ## :mega: **Team Progress Report** :mega:
 	- [issue] ELK is getting 1500 hits in 10 mins, we think it has to do with credential dumping, 
@@ -185,4 +185,19 @@
 		- We think its an artifact of one of the configurations on the box
 	- Add existing log data to web app for the demo
 	
- 
+## Week 11 Notes
+
+## :mega: **Team Progress Report** :mega:
+	- Met with Prof. Pelletier about our capstone progress
+	- Web app log page now shows results generated from last test
+	- Model is being refined; recieved feedback on how to improve the probabilistic model
+
+#### Meeting Notes
+	- Discussed the process for new data collection in Metropolis Transit
+	- Discussed the possible colloboration of our project with another student working on APT threats
+	- Discussed future deployment processes and how we will modify the RLES infrastructure template
+## :mega: **This Week's Action Items** :mega:
+	- redeploy the infrastrucre to collect new data
+	- analysis resutls to see how we can improve the probabilistic model
+	- build an API  for making stat queries 
+		- build an Angular service for querying said API
