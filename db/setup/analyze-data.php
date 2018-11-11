@@ -23,32 +23,46 @@ echo "Attack phases in memory" . PHP_EOL;
 $groupInfo = [];
 $dbGetGroupInformation = $mysqli->query("SELECT * FROM `known_groups`");
 while($getGroupInformation = mysqli_fetch_assoc($dbGetGroupInformation)) {
-    $groupInfo[$getGroupInformation["Name"]] = $getGroupInformation["ID"];
+    $groupInfo[$getGroupInformation["ID"]] = $getGroupInformation["Name"];
 }
 echo "Group information in memory" . PHP_EOL;
 
 $malwareInfo = [];
 $dbGetMalwareInformation = $mysqli->query("SELECT * FROM `known_malware`");
 while($getMalwareInformation = mysqli_fetch_assoc($dbGetMalwareInformation)) {
-    $malwareInfo[$getMalwareInformation["Name"]] = $getMalwareInformation["ID"];
+    $malwareInfo[$getMalwareInformation["ID"]] = $getMalwareInformation["Name"];
 }
 echo "Malware information in memory" . PHP_EOL;
 
 echo PHP_EOL . "--- Parsing group relationships ---" . PHP_EOL;
 
-foreach($groupInfo as $groupName => $groupID) {
+foreach($groupInfo as $groupID => $groupName) {
     echo "Analyzing " . $groupName . "... " . PHP_EOL;
 
-    $patternsToMap = [];
+    $malwareToMap = [];
     $dbGetRelationshipInformation = $mysqli->query("SELECT * FROM `known_relationships` WHERE SourceID = '" . $groupID . "'");
     while($getRelationshipInformation = mysqli_fetch_assoc($dbGetRelationshipInformation)) {
-        if(strpos("malware", $getRelationshipInformation["TargetID"]) !== 0) {
-            $patternsToMap[] = ["direct", $getRelationshipInformation["TargetID"]];
+        if(strpos($getRelationshipInformation["TargetID"], "malware") !== false) {
+            $malwareToMap[] = $getRelationshipInformation["TargetID"];
         }
     }
 
-    foreach($patternsToMap as $patternID) {
-        
+    foreach($malwareToMap as $malwareID) {
+        $dbGetPseudorelInformation = $mysqli->query("SELECT * FROM `known_relationships` WHERE SourceID = '" . $malwareID . "'");
+        while($getPseudorelInformation = mysqli_fetch_assoc($dbGetPseudorelInformation)) {
+            $dbValidatePseudorelInformation = $mysqli->query("SELECT * FROM `known_relationships`
+                                                                WHERE SourceID = '" . $groupID . "'
+                                                                AND TargetID = '" . $getPseudorelInformation["TargetID"] . "'");
+            
+            if($dbValidatePseudorelInformation->num_rows === 0) {
+                echo "Pseudorel: malware " . $malwareInfo[$malwareID] . " references " . $getPseudorelInformation["TargetID"] . PHP_EOL;
+                $mysqli->query("INSERT INTO `known_relationships` (`ID`, `SourceID`, `Type`, `TargetID`, `Description`)
+                                VALUES ('PSEUDO_RELATIONSHIP', '" . $groupID . "',
+                                'may', '" . $getPseudorelInformation["TargetID"] . "',
+                                '" . $groupName . " has access to this TTP via malware it is known to use, "
+                                . $malwareInfo[$malwareID] . ", despite not having been observed using this TTP during engagements.')");
+            }
+        }
     }
 }
 

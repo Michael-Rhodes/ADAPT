@@ -166,42 +166,42 @@ foreach($ctiRelationshipFiles as $ctiRelationshipFile) {
     if(array_key_exists($ctiRelationshipData["source_ref"], $groupIDs) && array_key_exists($ctiRelationshipData["target_ref"], $attackIDs)) {
         echo "G->A ";
         echo $groupIDs[$ctiRelationshipData["source_ref"]];
-        echo " " . $ctiRelationshipData["relationship_type"] . " ";
+        echo " uses ";
         echo $attackIDs[$ctiRelationshipData["target_ref"]];
 
         $desc = str_replace('"', "'", $ctiRelationshipData["description"]);
 
         $mysqli->query("INSERT INTO `known_relationships` (`ID`, `SourceID`, `Type`, `TargetID`, `Description`)
                         VALUES ('" . $ctiRelationshipData["id"] . "', '" . $ctiRelationshipData["source_ref"] . "',
-                        '" . $ctiRelationshipData["relationship_type"] . "', '" . $ctiRelationshipData["target_ref"] . "', \"" . $desc . "\")");
+                        'uses', '" . $ctiRelationshipData["target_ref"] . "', \"" . $desc . "\")");
         echo " ...done" . PHP_EOL;
     }
 
     if(array_key_exists($ctiRelationshipData["source_ref"], $malwareIDs) && array_key_exists($ctiRelationshipData["target_ref"], $attackIDs)) {
         echo "M->A ";
         echo $malwareIDs[$ctiRelationshipData["source_ref"]];
-        echo " " . $ctiRelationshipData["relationship_type"] . " ";
+        echo " implements ";
         echo $attackIDs[$ctiRelationshipData["target_ref"]];
 
         $desc = str_replace('"', "'", $ctiRelationshipData["description"]);
 
         $mysqli->query("INSERT INTO `known_relationships` (`ID`, `SourceID`, `Type`, `TargetID`, `Description`)
                         VALUES ('" . $ctiRelationshipData["id"] . "', '" . $ctiRelationshipData["source_ref"] . "',
-                        '" . $ctiRelationshipData["relationship_type"] . "', '" . $ctiRelationshipData["target_ref"] . "', \"" . $desc . "\")");
+                        'implements', '" . $ctiRelationshipData["target_ref"] . "', \"" . $desc . "\")");
         echo " ...done" . PHP_EOL;
     }
 
     if(array_key_exists($ctiRelationshipData["source_ref"], $groupIDs) && array_key_exists($ctiRelationshipData["target_ref"], $malwareIDs)) {
         echo "G->M ";
         echo $groupIDs[$ctiRelationshipData["source_ref"]];
-        echo " " . $ctiRelationshipData["relationship_type"] . " ";
+        echo " uses ";
         echo $malwareIDs[$ctiRelationshipData["target_ref"]];
 
         $desc = $groupIDs[$ctiRelationshipData["source_ref"]] . " has been known to make use of " . $malwareIDs[$ctiRelationshipData["target_ref"]];
 
         $mysqli->query("INSERT INTO `known_relationships` (`ID`, `SourceID`, `Type`, `TargetID`, `Description`)
                         VALUES ('" . $ctiRelationshipData["id"] . "', '" . $ctiRelationshipData["source_ref"] . "',
-                        '" . $ctiRelationshipData["relationship_type"] . "', '" . $ctiRelationshipData["target_ref"] . "', \"" . $desc . "\")");
+                        'uses', '" . $ctiRelationshipData["target_ref"] . "', \"" . $desc . "\")");
         echo " ...done" . PHP_EOL;
     }
 }
