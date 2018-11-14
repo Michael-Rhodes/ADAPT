@@ -9,13 +9,15 @@ import { AboutComponent } from './about/about.component';
 import { ChartsComponent } from './charts/charts.component';
 import { ChartsModule } from 'ng2-charts';
 import { BehaviorSubject} from 'rxjs';
+import { OverviewComponent } from './overview/overview.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LogsComponent,
     AboutComponent,
-    ChartsComponent
+    ChartsComponent,
+    OverviewComponent
     ],
   imports: [
     BrowserModule,
