@@ -6,12 +6,16 @@ import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, MatSortMo
 import { AppComponent } from './app.component';
 import { LogsComponent } from './logs/logs.component';
 import { AboutComponent } from './about/about.component';
+import { ChartsComponent } from './charts/charts.component';
+import { ChartsModule } from 'ng2-charts';
+import { BehaviorSubject} from 'rxjs';
 
 @NgModule({
   declarations: [
     AppComponent,
     LogsComponent,
-    AboutComponent
+    AboutComponent,
+    ChartsComponent
     ],
   imports: [
     BrowserModule,
@@ -21,7 +25,9 @@ import { AboutComponent } from './about/about.component';
     MatPaginatorModule,
     MatProgressSpinnerModule,
     MatSortModule,
-    MatTableModule
+    MatTableModule,
+    ChartsModule,
+    
   ],
   providers: [],
   bootstrap: [
