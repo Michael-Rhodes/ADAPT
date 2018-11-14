@@ -111,6 +111,44 @@ foreach($ctiIntruderFiles as $ctiIntruderFile) {
     echo "...done" . PHP_EOL;
 }
 
+echo PHP_EOL . "--- Loading known malware ---" . PHP_EOL;
+$malwareIDs = [];
+$mysqli->query("TRUNCATE `known_malware`");
+$ctiMalwareFiles = glob("/tmp/adapt/cti/enterprise-attack/malware/*.json");
+foreach($ctiMalwareFiles as $ctiMalwareFile) {
+    $ctiMalwareData = file_get_contents($ctiMalwareFile);
+    $ctiMalwareJSON = json_decode($ctiMalwareData, true);
+    $ctiMalwareData = $ctiMalwareJSON["objects"][0];
+
+    echo $ctiMalwareData["name"] . "... ";
+    if(array_key_exists("revoked", $ctiMalwareData)) {
+        if($ctiMalwareData["revoked"]) {
+            echo "REVOKED, SKIPPING" . PHP_EOL;
+            continue;
+        }
+    }
+
+    $malwareIDs[$ctiMalwareData["id"]] = $ctiMalwareData["name"];
+
+    for($i = 0; $i < count($ctiMalwareData["external_references"]); $i++) {
+        if(strcmp($ctiMalwareData["external_references"][$i]["source_name"], "mitre-attack") === 0) {
+            $ctiMalwareURL = $ctiMalwareData["external_references"][$i]["url"];
+            $ctiMalwareID = $ctiMalwareData["external_references"][$i]["external_id"];
+        }
+    }
+
+    $ctiMalwareAliases = "[";
+    for($i = 0; $i < count($ctiMalwareData["x_mitre_aliases"]); $i++) {
+        $ctiMalwareAliases .= $ctiMalwareData["x_mitre_aliases"][$i] . ", ";
+    }
+    $ctiMalwareAliases = rtrim($ctiMalwareAliases, ", ") . "]";
+
+    $mysqli->query("INSERT INTO `known_malware` (`ID`, `Name`, `Aliases`, `URL`, `ExternalID`)
+                    VALUES ('" . $ctiMalwareData["id"] . "', '" . $ctiMalwareData["name"] . "',
+                    '" . $ctiMalwareAliases . "', '" . $ctiMalwareURL . "', '" . $ctiMalwareID . "')");
+    echo "...done" . PHP_EOL;
+}
+
 echo PHP_EOL . "--- Loading relevant relationships ---" . PHP_EOL;
 $mysqli->query("TRUNCATE `known_relationships`");
 $ctiRelationshipFiles = glob("/tmp/adapt/cti/enterprise-attack/relationship/*.json");
@@ -125,18 +163,47 @@ foreach($ctiRelationshipFiles as $ctiRelationshipFile) {
         }
     }
 
-    if(!array_key_exists($ctiRelationshipData["source_ref"], $groupIDs) || !array_key_exists($ctiRelationshipData["target_ref"], $attackIDs)) {
-        continue;
+    if(array_key_exists($ctiRelationshipData["source_ref"], $groupIDs) && array_key_exists($ctiRelationshipData["target_ref"], $attackIDs)) {
+        echo "G->A ";
+        echo $groupIDs[$ctiRelationshipData["source_ref"]];
+        echo " uses ";
+        echo $attackIDs[$ctiRelationshipData["target_ref"]];
+
+        $desc = str_replace('"', "'", $ctiRelationshipData["description"]);
+
+        $mysqli->query("INSERT INTO `known_relationships` (`ID`, `SourceID`, `Type`, `TargetID`, `Description`)
+                        VALUES ('" . $ctiRelationshipData["id"] . "', '" . $ctiRelationshipData["source_ref"] . "',
+                        'uses', '" . $ctiRelationshipData["target_ref"] . "', \"" . $desc . "\")");
+        echo " ...done" . PHP_EOL;
     }
 
-    echo $groupIDs[$ctiRelationshipData["source_ref"]];
-    echo " " . $ctiRelationshipData["relationship_type"] . " ";
-    echo $attackIDs[$ctiRelationshipData["target_ref"]];
+    if(array_key_exists($ctiRelationshipData["source_ref"], $malwareIDs) && array_key_exists($ctiRelationshipData["target_ref"], $attackIDs)) {
+        echo "M->A ";
+        echo $malwareIDs[$ctiRelationshipData["source_ref"]];
+        echo " implements ";
+        echo $attackIDs[$ctiRelationshipData["target_ref"]];
 
-    $mysqli->query("INSERT INTO `known_relationships` (`ID`, `SourceID`, `Type`, `TargetID`)
-                    VALUES ('" . $ctiRelationshipData["id"] . "', '" . $ctiRelationshipData["source_ref"] . "',
-                    '" . $ctiRelationshipData["relationship_type"] . "', '" . $ctiRelationshipData["target_ref"] . "')");
-    echo " ...done" . PHP_EOL;
+        $desc = str_replace('"', "'", $ctiRelationshipData["description"]);
+
+        $mysqli->query("INSERT INTO `known_relationships` (`ID`, `SourceID`, `Type`, `TargetID`, `Description`)
+                        VALUES ('" . $ctiRelationshipData["id"] . "', '" . $ctiRelationshipData["source_ref"] . "',
+                        'implements', '" . $ctiRelationshipData["target_ref"] . "', \"" . $desc . "\")");
+        echo " ...done" . PHP_EOL;
+    }
+
+    if(array_key_exists($ctiRelationshipData["source_ref"], $groupIDs) && array_key_exists($ctiRelationshipData["target_ref"], $malwareIDs)) {
+        echo "G->M ";
+        echo $groupIDs[$ctiRelationshipData["source_ref"]];
+        echo " uses ";
+        echo $malwareIDs[$ctiRelationshipData["target_ref"]];
+
+        $desc = $groupIDs[$ctiRelationshipData["source_ref"]] . " has been known to make use of " . $malwareIDs[$ctiRelationshipData["target_ref"]];
+
+        $mysqli->query("INSERT INTO `known_relationships` (`ID`, `SourceID`, `Type`, `TargetID`, `Description`)
+                        VALUES ('" . $ctiRelationshipData["id"] . "', '" . $ctiRelationshipData["source_ref"] . "',
+                        'uses', '" . $ctiRelationshipData["target_ref"] . "', \"" . $desc . "\")");
+        echo " ...done" . PHP_EOL;
+    }
 }
 
 // Terminates all utilized connections and ends script
