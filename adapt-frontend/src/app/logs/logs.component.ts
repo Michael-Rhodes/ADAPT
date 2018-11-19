@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatPaginator, MatSort,MatTableDataSource} from '@angular/material';
 
+import { GraphDataService } from '../graphData.service';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 export interface LogData {
   // Matching Events	Total Events	% of Events	Matching TTPs	Available TTPs	% of TTPs	Coverage	% of Coverage	Final value
   // I changed order:: final value moved up to second col.
@@ -16,8 +19,8 @@ export interface LogData {
   percent_of_coverage: string;
   
 }
-
-const LOG_DATA: LogData[] = [
+const LOG_DATA1: LogData[] = [{"group":"Lazarus Group","matching_events":"20160","total_events":"20979","percent_of_events":"96.1","matching_ttps":"12","available_ttps":"74","percent_of_ttps":"16.22","coverage":"6\/11","percent_of_coverage":"54.55","final_value":"8.5"}];
+const LOG_DATA2: LogData[] = [
 {"percent_of_ttps": " 16.22", "matching_events": " 19454", "total_events": " 19953", "matching_ttps": "  12", "percent_of_events": " 97.5", "percent_of_coverage": " 54.55", "coverage": " 6/11", "final_value": " 8.62", "group": "Lazarus Group", "available_ttps": "74"}, 
 {"percent_of_ttps": " 16.18", "matching_events": " 19418", "total_events": " 19953", "matching_ttps": "  11", "percent_of_events": " 97.32", "percent_of_coverage": " 54.55", "coverage": " 6/11", "final_value": " 8.59", "group": "menuPass", "available_ttps": "68"}, 
 {"percent_of_ttps": " 12.64", "matching_events": " 19445", "total_events": " 19953", "matching_ttps": "  11", "percent_of_events": " 97.45", "percent_of_coverage": " 54.55", "coverage": " 6/11", "final_value": " 6.72", "group": "APT28", "available_ttps": "87"}, 
@@ -97,8 +100,7 @@ const LOG_DATA: LogData[] = [
   templateUrl: './logs.component.html',
   styleUrls: ['./logs.component.css']
 })
-export class LogsComponent implements OnInit {
-  
+export class LogsComponent implements OnInit {    
     displayedColumns: string[] = ['group', 'final_value', 'matching_events', 'total_events', 
     'percent_of_events', 'matching_ttps', 'available_ttps', 'percent_of_ttps', 'coverage', 'percent_of_coverage' ];
     dataSource: MatTableDataSource<LogData>;
@@ -113,14 +115,33 @@ export class LogsComponent implements OnInit {
     }
   }
   
-  constructor() { 
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(LOG_DATA);
+  constructor(private api: GraphDataService) {
+    // Call the API
+    this.api.callAPI().subscribe((data) => {
+      console.log(data); // this should get you the body of the request. this is a DEBUG
+      var output = <LogData[]>data;
+      // Assign the data to the data source for the table to render
+      this.dataSource = new MatTableDataSource(output);
+
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+
+      // this.dataSource = new MatTableDataSource(JSON.parse(res.body)); // this should be the "production" way to do this using the API response
+    }, (err) => {
+      // Do your error handling here
+      console.log('error');
+
+      alert('There was an error loading the data.');
+
+      this.dataSource = new MatTableDataSource(LOG_DATA2);
+
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
   }
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+
   }
 
 

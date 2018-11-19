@@ -10,6 +10,8 @@ import { ChartsComponent } from './charts/charts.component';
 import { ChartsModule } from 'ng2-charts';
 import { BehaviorSubject} from 'rxjs';
 import { OverviewComponent } from './overview/overview.component';
+import {GraphDataService } from './graphData.service';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -29,9 +31,9 @@ import { OverviewComponent } from './overview/overview.component';
     MatSortModule,
     MatTableModule,
     ChartsModule,
-    
+    HttpClientModule
   ],
-  providers: [],
+  providers: [GraphDataService],
   bootstrap: [
     AppComponent
   ]
