@@ -5,10 +5,10 @@
     <li class="breadcrumb-item active">Chart_Data</li>
   </ol>
 
-  <div style="display: block" style="padding-left: 5%; padding-right: 5%;">
+  <div style="display: block" *ngIf="barChartData.length > 0" style="padding-left: 3%; padding-right: 3%;">
       <canvas baseChart
               [datasets]="barChartData"
-              [labels]="barChartLabels"
+              [labels]="barChartLables"
               [options]="barChartOptions"
               [legend]="barChartLegend"
               [chartType]="barChartType"

@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient, HttpResponse} from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { GraphDataService } from '../graphData.service';
+import { BaseChartDirective } from 'ng2-charts/ng2-charts';
 
 export interface LogData {
   // Matching Events	Total Events	% of Events	Matching TTPs	Available TTPs	% of TTPs	Coverage	% of Coverage	Final value
@@ -14,10 +16,9 @@ export interface LogData {
   available_ttps: string;
   percent_of_ttps: string;
   coverage: string;
-  percent_of_coverage: string;
-  
+  percent_of_coverage: string;  
 }
-const LOG_DATA: LogData[] = [
+const LOG_DATA1: LogData[] = [
   {"percent_of_ttps": " 16.22", "matching_events": " 19454", "total_events": " 19953", "matching_ttps": "  12", "percent_of_events": " 97.5", "percent_of_coverage": " 54.55", "coverage": " 6/11", "final_value": " 8.62", "group": "Lazarus Group", "available_ttps": "74"}, 
   {"percent_of_ttps": " 16.18", "matching_events": " 19418", "total_events": " 19953", "matching_ttps": "  11", "percent_of_events": " 97.32", "percent_of_coverage": " 54.55", "coverage": " 6/11", "final_value": " 8.59", "group": "menuPass", "available_ttps": "68"}, 
   {"percent_of_ttps": " 12.64", "matching_events": " 19445", "total_events": " 19953", "matching_ttps": "  11", "percent_of_events": " 97.45", "percent_of_coverage": " 54.55", "coverage": " 6/11", "final_value": " 6.72", "group": "APT28", "available_ttps": "87"}, 
@@ -91,42 +92,61 @@ const LOG_DATA: LogData[] = [
   {"percent_of_ttps": " 10", "matching_events": " 47", "total_events": " 19953", "matching_ttps": "  1", "percent_of_events": " 0.24", "percent_of_coverage": " 18.18", "coverage": " 2/11", "final_value": " 0", "group": "NEODYMIUM", "available_ttps": "10"}, 
   {"percent_of_ttps": " 20", "matching_events": " 3", "total_events": " 19953", "matching_ttps": "  1", "percent_of_events": " 0.02", "percent_of_coverage": " 9.09", "coverage": " 1/11", "final_value": " 0", "group": "APT16", "available_ttps": "5"}
   ];
-
 @Component({
   selector: 'app-charts',
   templateUrl: './charts.component.html',
   styleUrls: ['./charts.component.css']
 })
 export class ChartsComponent implements OnInit {
+  public logData = new Array();
+  public aptGroupNames = new Array();
+  public aptFinalValues = new Array();
 
-  
-  constructor() { }
+  constructor(private api: GraphDataService){}
 
   public barChartOptions = {
-    scaleShowVerticalLines: false,
+    scaleShowVerticalLines: true,
     responsive: true
   };
-  public barChartLabels = ['group', 'final_value', 'matching_events', 'total_events', 'percent_of_events', 'matching_ttps', 'available_ttps', 'percent_of_ttps', 'coverage', 'percent_of_coverage' ];
-  //barcharLables = LOG_DATA.every()
+  public barChartLables;
   public barChartType = 'bar';
   public barChartLegend = true;
   public barChartData = [
     {
-      data: [65, 59, 80, 81, 56, 55, 40], label: 'APT Data'
+      data: [], label: 'APT Data'
     },
   ];
- 
-
-
   // events
   public chartClicked(e:any):void {
     console.log(e);
   }
- 
   public chartHovered(e:any):void {
     console.log(e);
   }
+  public getGroupNames():void {
+    for(var i = 0; i < 58; i ++){
+      console.log(this.logData[i]['group']);
+    }
+  }
+  public getAPIData():void {
+     // Call the API
+     this.api.callAPI().subscribe((data) => {
+     console.log(data); // this should get you the body of the request. this is a DEBUG
+      for( let entry in data){
+        console.log("added in NAMES: "+ data[entry]['group']);
+        this.aptGroupNames.push(data[entry]['group']);
+        this.aptFinalValues.push(data[entry]['final_value']);
+      }
+      this.barChartLables = this.aptGroupNames;
+      this.barChartData[0].data = this.aptFinalValues;
+    }, (err) => {
+      // Do your error handling here
+      console.log('error');
+      alert('There was an error loading the data.');
+    });
+  }
   ngOnInit() {  
-}
-
+    //get data 1st!
+    this.getAPIData();
+  }
 }
