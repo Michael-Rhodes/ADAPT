@@ -4,14 +4,48 @@
     <li class="breadcrumb-item"><a routerLink="/logs">Logs</a></li>
     <li class="breadcrumb-item active">Chart_Data</li>
   </ol>
+  <!--    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">Dropdown</a>
+    <div class="dropdown-menu show" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);">
+      <a class="dropdown-item" href="#">Action</a>
+      <a class="dropdown-item" href="#">Another action</a>
+      <a class="dropdown-item" href="#">Something else here</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="#">Separated link</a>
+    </div>-->
 
-  <div style="display: block" *ngIf="barChartData.length > 0" style="padding-left: 3%; padding-right: 3%;">
+  <h3 style="text-align:center;">APT Group Scores:</h3>
+  <div style="display: block">
       <canvas baseChart
               [datasets]="barChartData"
               [labels]="barChartLables"
               [options]="barChartOptions"
               [legend]="barChartLegend"
+              [colors]="chartColors"
               [chartType]="barChartType"
               (chartHover)="chartHovered($event)"
               (chartClick)="chartClicked($event)"></canvas>
     </div>
+    <div style="display: block;">
+        <canvas baseChart
+                    [datasets]="barChartData"
+                    [labels]="barChartLables"
+                    [options]="barChartOptions"
+                    [colors]="lineChartColors"
+                    [legend]="lineChartLegend"
+                    [chartType]="lineChartType"
+                    (chartHover)="chartHovered($event)"></canvas>
+        </div>
+    <hr>
+
+  <h3 style="text-align:center;">Tools/Techniques/Tactics Detected:</h3>
+    <div style="display: block">
+      <canvas baseChart
+              [data]="pieChartData"
+              [labels]="pieChartLabels"
+              [chartType]="pieChartType"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+    </div>
+
+  
+ 

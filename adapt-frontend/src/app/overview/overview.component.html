@@ -7,7 +7,18 @@
   <li class="breadcrumb-item active">Overview</li>
 </ol>
 <div class="overview-format">
-<h1>Overview</h1>
+<h1 style="text-align: center;">System Status Overview</h1>
+<hr>
+
+<div class="alert alert-dismissible alert-success centered">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>ADAPT is live! </strong> &nbsp;|&nbsp; All systems are operational. 
+</div>
+<div class="alert alert-dismissible alert-danger centered">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>ADAPT is down! </strong> &nbsp;|&nbsp; System not operational. 
+  </div>
+
 <div class="centered">
     <h2>APT Network Diagram</h2>
     <br>
@@ -15,6 +26,75 @@
     <br>
 </div>
 
+
+<span class="badge badge-success">Success</span>
+<span class="badge badge-danger">Danger</span>
+<span class="badge badge-warning">Warning</span>
+<span class="badge badge-info">Info</span>
+
+
+<h2>Tool Status Bar:</h2>
+<table class="table">
+    <tbody>
+      <tr>
+          <td><div class="card border-primary mb-3" style="max-width: 28rem;">
+              <div class="card-header">API STATUS</div>
+                <div class="card-body">
+                  <ul>
+                     [ <span class="badge badge-success">Success</span> ] Database Endpoint 
+                  </ul>             
+                   </div>
+              </div>
+          </td>
+          <td style="padding-left: 2%;">
+              <div class="card border-primary mb-3" style="max-width: 28rem;">
+                  <div class="card-header">DATABASE STATUS</div>
+                  <div class="card-body">
+                    <p>Database status bar</p>
+                  </div>
+                </div>
+          </td>
+          <td>
+            <div class="card border-primary mb-3" style="max-width: 28rem;">
+                <div class="card-header">SEIM STATUS</div>
+                <div class="card-body">
+                  <p>seim status bar</p>
+                </div>
+              </div>
+          </td>
+      </tr>
+    </tbody>
+  </table>
+  <h2>VM Status Bar:</h2>
+  <table class="table">
+      <tbody>
+        <tr>
+            <td><div class="card border-primary mb-3" style="max-width: 28rem;">
+                <div class="card-header">VM Box 1</div>
+                  <div class="card-body">
+                    <p>api status bar</p>             
+                     </div>
+                </div>
+            </td>
+            <td style="padding-left: 2%;">
+                <div class="card border-primary mb-3" style="max-width: 28rem;">
+                    <div class="card-header">VM Box 2</div>
+                    <div class="card-body">
+                      <p>Database status bar</p>
+                    </div>
+                  </div>
+            </td>
+            <td>
+              <div class="card border-primary mb-3" style="max-width: 28rem;">
+                  <div class="card-header">VM Box 3</div>
+                  <div class="card-body">
+                    <p>seim status bar</p>
+                  </div>
+                </div>
+            </td>
+        </tr>
+      </tbody>
+    </table>
 
 
 </div>
