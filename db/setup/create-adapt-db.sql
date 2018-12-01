@@ -60,11 +60,30 @@ CREATE TABLE `known_relationships` (
   KEY `QuickAccess_TargetID` (`TargetID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+CREATE TABLE `patterns_seen` (
+  `ID` varchar(64) NOT NULL,
+  `ExternalID` varchar(64) NOT NULL,
+  `Name` varchar(64) NOT NULL,
+  `Epoch` int(11) DEFAULT NULL,
+  `ComputerName` varchar(256) DEFAULT NULL,
+  KEY `FastAccessByID` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `pseudo_patterns` (
+  `ID` varchar(64) NOT NULL,
+  `Name` varchar(64) NOT NULL,
+  `Phase` varchar(32) NOT NULL,
+  `URL` varchar(128) NOT NULL,
+  `ExternalID` varchar(16) NOT NULL,
+  KEY `FastAccessByID` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 CREATE TABLE `witnessed` (
   `ID` varchar(64) NOT NULL,
   `ExternalID` varchar(64) NOT NULL,
   `Name` varchar(64) NOT NULL,
-  `TimeUTC` varchar(32) DEFAULT NULL,
+  `Epoch` int(11) DEFAULT NULL,
   `ComputerName` varchar(256) DEFAULT NULL,
   KEY `FastAccessByID` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
