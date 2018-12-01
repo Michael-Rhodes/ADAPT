@@ -6,3 +6,13 @@ table {
   padding-left: 30px;
   padding-right: 30px;
 }
+.card-info{
+  padding-top: 1%;
+  padding-left: 30%;
+  padding-right: 30%;
+  padding-bottom: 30px;
+}
+.body-padding{
+  padding-left: 30px;
+  padding-right: 30px;
+}

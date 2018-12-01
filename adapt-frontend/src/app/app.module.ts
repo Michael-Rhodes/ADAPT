@@ -12,6 +12,14 @@ import { BehaviorSubject} from 'rxjs';
 import { OverviewComponent } from './overview/overview.component';
 import {GraphDataService } from './graphData.service';
 import {HttpClientModule} from '@angular/common/http';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
+import {MatButtonModule, MatCheckboxModule, MatDatepickerModule, MatNativeDateModule} from '@angular/material';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import {CdkTableModule} from '@angular/cdk/table';
+import {CdkTreeModule} from '@angular/cdk/tree';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,13 +33,28 @@ import {HttpClientModule} from '@angular/common/http';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    ChartsModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    NgbModule,
+    FormsModule,
     MatInputModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
     MatSortModule,
     MatTableModule,
-    ChartsModule,
-    HttpClientModule
+    MatButtonModule, 
+    MatCheckboxModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatInputModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatSortModule,
+    MatTableModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
   ],
   providers: [GraphDataService],
   bootstrap: [

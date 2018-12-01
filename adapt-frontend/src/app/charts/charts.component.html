@@ -1,3 +1,4 @@
+<div class="body-padding">
 <ol class="breadcrumb">
     <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
     <li class="breadcrumb-item"><a routerLink="/overview">Overview</a></li>
@@ -12,8 +13,70 @@
       <div class="dropdown-divider"></div>
       <a class="dropdown-item" href="#">Separated link</a>
     </div>-->
-
-  <h3 style="text-align:center;">APT Group Scores:</h3>
+    <h3 style="text-align:center;"><b>APT Group Scores:</b></h3>
+    <div class="card-info">
+    <ngb-tabset>
+        <ngb-tab title="About">
+          <ng-template ngbTabContent>
+            <br>
+            <h5>APT group scores are a display of the graph data we have collected in real time. Without anything set, it pulls in all log data collected from the tool.
+            </h5>
+           
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab>
+          <ng-template ngbTabTitle><b>Timeslices</b></ng-template>
+          <ng-template ngbTabContent>
+            <br>
+            <h5>If you would like to zero in on a specific timeslice, you can specifiy it here and check the activity during that timeframe.
+            </h5>
+            <hr>
+            <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <h5>Starting Date/Time</h5>
+                <mat-form-field>
+                  <input matInput [matDatepickerFilter]="startFilter" [formControl]="startValue" [matDatepicker]="picker" placeholder="Choose start date">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <ngb-timepicker [(ngModel)]="startTime" [seconds]="seconds"></ngb-timepicker>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <h5>Ending Date/Time</h5>
+                <mat-form-field >
+                  <input matInput [matDatepickerFilter]="endFilter" [formControl]="endValue" [matDatepicker]="endDate" placeholder="Choose end date">
+                  <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+                  <mat-datepicker #endDate></mat-datepicker>
+                </mat-form-field>
+                <ngb-timepicker [(ngModel)]="endTime" [seconds]="seconds"></ngb-timepicker>
+              </div>
+            </div>
+            <br>
+            <button class="btn btn-primary" style="width: 100px" (click)="selectTime(startValue, startTime, endValue, endTime)">
+              Go
+            </button>
+            
+          </ng-template>
+        </ngb-tab>
+      </ngb-tabset>
+      
+    </div>
+ <br>
+<!--
+     <form class="form-inline">
+      <div class="form-group">
+        <div class="input-group">
+          <input class="form-control" placeholder="yyyy-mm-dd"
+                 name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+          </div>
+        </div>
+      </div>
+    </form>
+  -->
+  
+ 
   <div style="display: block">
       <canvas baseChart
               [datasets]="barChartData"
@@ -25,6 +88,7 @@
               (chartHover)="chartHovered($event)"
               (chartClick)="chartClicked($event)"></canvas>
     </div>
+  <!--
     <div style="display: block;">
         <canvas baseChart
                     [datasets]="barChartData"
@@ -35,17 +99,19 @@
                     [chartType]="lineChartType"
                     (chartHover)="chartHovered($event)"></canvas>
         </div>
-    <hr>
-
+      -->
+  <br>
+  <br>
   <h3 style="text-align:center;">Tools/Techniques/Tactics Detected:</h3>
     <div style="display: block">
       <canvas baseChart
               [data]="pieChartData"
               [labels]="pieChartLabels"
               [chartType]="pieChartType"
+              [colors]="pieChartColors"
               (chartHover)="chartHovered($event)"
               (chartClick)="chartClicked($event)"></canvas>
     </div>
-
-  
  
+ 
+
