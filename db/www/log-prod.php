@@ -31,7 +31,7 @@ $patternInformation = mysqli_fetch_assoc($dbPatternInformation);
 $dateToSave = substr($mysqli->real_escape_string($eventData["UtcTime"]), 0, strpos($mysqli->real_escape_string($eventData["UtcTime"]), "."));
 
 // Abysmally long query to save the inbound data, now with proper internal ID, to the 'witnessed' table
-$mysqli->query("INSERT INTO `witnessed` (`ID`, `ExternalID`, `Name`, `Epoch`, `ComputerName`)
+$mysqli->query("INSERT INTO `patterns_seen` (`ID`, `ExternalID`, `Name`, `Epoch`, `ComputerName`)
 VALUES ('" . $patternInformation["ID"] . "', '" . $patternInformation["ExternalID"] . "',
 '" . $patternInformation["Name"] . "', UNIX_TIMESTAMP(CONVERT_TZ('" . $dateToSave . "', '+00:00', 'SYSTEM')), '" . $mysqli->real_escape_string($data["host"]["name"]) . "')");
 echo "OK";

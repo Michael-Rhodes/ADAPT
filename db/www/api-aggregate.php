@@ -1,29 +1,16 @@
 <?php
 /* ADAPT-DB, Active Detection of Advanced Persistent Threats (Database)
- * File: www/index.php
+ * File: www/api-aggregate.php
  * Author: Chris Partridge
  *
- * Brief theory demonstration 10/15
+ * Outputs entire contents of database.
  */
 
 // Initializes database and establishes connection
 include "./inc/config.php";
 
-echo "<html><head></head><body>";
-/*echo "<style>
-* {
-    box-sizing: border-box;
-}
-
-.row {
-    display: flex;
-}
-
-.column {
-    flex: 50%;
-    padding: 10px;
-</style>";
-echo "<div class='row'><div class='column'>";*/
+// Enable CORS
+header("Access-Control-Allow-Origin: *");
 
 $phaseInfo = [];
 $dbGetPhaseInformation = $mysqli->query("SELECT * FROM `attack_phases`");
@@ -31,18 +18,6 @@ while($getPhaseInformation = mysqli_fetch_assoc($dbGetPhaseInformation)) {
     $phaseInfo[$getPhaseInformation["Name"]] = $getPhaseInformation["Order"];
 }
 
-// TEST DATA
-/*
-$activityIDs = [];
-$activityHistory = [];
-$dbGetActivityInformation = $mysqli->query("SELECT * FROM `activity_log`");
-while($getActivityInformation = mysqli_fetch_assoc($dbGetActivityInformation)) {
-    $activityHistory[] = $getActivityInformation;
-    $activityIDs[] = $getActivityInformation["PatternID"];
-}
-*/
-
-// LIVE DATA
 $activityIDs = [];
 $activityHistory = [];
 $numEventsWitnessed = 0;
@@ -57,17 +32,14 @@ $activityIDs = array_unique($activityIDs);
 
 $patternInfo = [];
 foreach($activityIDs as $actID) {
-    $dbGetPatternInformation = $mysqli->query("SELECT * FROM `attack_patterns` WHERE `ID` = '" . $actID . "'");
+    $dbGetPatternInformation = $mysqli->query("SELECT * FROM `pseudo_patterns` WHERE `ID` = '" . $actID . "'");
     $getPatternInformation = mysqli_fetch_assoc($dbGetPatternInformation);
     $patternInfo[$actID] = $getPatternInformation;
 }
 
-//echo "<p>--- Flagged attack patterns (" . count($activityHistory) . ") ---</p>";
 foreach($activityHistory as $historical) {
     $thisActivity = $patternInfo[$historical["ID"]];
-    //echo "<p>" . $thisActivity["Name"] . " (" . $thisActivity["Phase"] . "), logged at " . $historical["TimeUTC"] . " on host " . $historical["ComputerName"] . "</p>";
 }
-//echo "</div><div class='column'>";
 
 $entityStats = [];
 foreach($activityIDs as $actID) {
@@ -82,8 +54,7 @@ foreach($activityIDs as $actID) {
 }
 
 arsort($entityStats);
-
-echo "<p>--- Matching entities: ---</p>";
+$arrOut = [];
 
 foreach($entityStats as $entityKey => $entityFreq) {
     if(strpos($entityKey, "malware--") !== false) {
@@ -100,7 +71,7 @@ foreach($entityStats as $entityKey => $entityFreq) {
     // num*MatchingActivities
     $entityRels = [];
     while($countEntityRelationships = mysqli_fetch_assoc($dbCountEntityRelationships)) {
-        if(strpos($countEntityRelationsips["TargetID"], "malware--") === false) {
+        if(strpos($countEntityRelationships["TargetID"], "malware--") === false) {
             $entityRels[] = $countEntityRelationships["TargetID"];
         }
     }
@@ -115,17 +86,30 @@ foreach($entityStats as $entityKey => $entityFreq) {
     $numUniqMatchingActivities = $entityFreq;
 
     // num*Coverage
-    $numTotalCoverage = 11; // hardcoded for now
+    // $numTotalCoverage = 11; // hardcoded for now
     $entityCoverage = [];
     $uniqMatchingEntityRels = array_unique($matchingEntityRels);
     foreach($uniqMatchingEntityRels as $histmatch) {
-        $dbCountEntityCoverage = $mysqli->query("SELECT * FROM `attack_patterns` WHERE `ID` = '" . $histmatch . "'");
+        $dbCountEntityCoverage = $mysqli->query("SELECT * FROM `pseudo_patterns` WHERE `ID` = '" . $histmatch . "'");
 
         while($countEntityCoverage = mysqli_fetch_assoc($dbCountEntityCoverage)) {
             $entityCoverage[$countEntityCoverage["Phase"]] = 1;
         }
     }
     $numTTPCoverage = count($entityCoverage);
+
+    $fullCoverage = [];
+    $dbCountFullCoverage = $mysqli->query("SELECT * FROM `known_relationships` WHERE `SourceID` = '" . $entityKey . "'");
+    while($countFullCoverage = mysqli_fetch_assoc($dbCountFullCoverage)) {
+        if(strpos($countFullCoverage["TargetID"], "malware--") === false) {
+            $dbConvertFullCoverage = $mysqli->query("SELECT * FROM `pseudo_patterns` WHERE `ID` = '" . $countFullCoverage["TargetID"] . "'");
+
+            while($convertFullCoverage = mysqli_fetch_assoc($dbConvertFullCoverage)) {
+                $fullCoverage[$convertFullCoverage["Phase"]] = 1;
+            }
+        }
+    }
+    $numTotalCoverage = count($fullCoverage);
 
     // Stats about stats computed
     $percentMatchingEvents = $numMatchingActivities/$numEventsWitnessed;
@@ -134,37 +118,25 @@ foreach($entityStats as $entityKey => $entityFreq) {
 
     // Data available for analysis:
     // $numMatchingActivities = number of nonunique activities matching
-    // $numEventsWitnessed = number of entries in `witnessed`
+    // $numEventsWitnessed =  number of entries in `witnessed`
     // $numUniqMatchingActivities = number of unique activities matching
     // numTTPsAvailable = number of TTPs that the APT can access, excluding malware
-    echo "<p>" . $type . " '" . $getEntityInformation["Name"] . "' has following stats: ";
-    echo "matching events " . $numMatchingActivities . ", ";
-    echo "total events " . $numEventsWitnessed . ", ";
-    echo "<b>%events " . round((100 * $percentMatchingEvents), 2) . "</b>, ";
-    echo "matching TTPs " . $numUniqMatchingActivities . ", ";
-    echo "available TTPs " . $numTTPsAvailable . ", ";
-    echo "<b>%TTPs " . round((100 * $percentMatchingTTPs), 2) . "</b>, ";
-    echo "coverage " . $numTTPCoverage . "/" . $numTotalCoverage . ", ";
-    echo "<b>%coverage " . round((100 * $percentMatchingCoverage), 2) . "</b>, ";
-    echo "<b><u>FINAL VALUE: " . round((100 * ($percentMatchingEvents * $percentMatchingTTPs * $percentMatchingCoverage)), 2) . "</b></u>";
-    /*
-    echo "<p>" . $type . " '" . $getEntityInformation["Name"] . "' has " . $dbCountEntityRelationships->num_rows . " known patterns, " . $entityFreq . " of which are seen here (";
-    $percent = round($entityFreq/$dbCountEntityRelationships->num_rows, 3) * 100;
-    if($percent > 50) {
-        echo "<b>" . $percent . "% match</b>, ";
-    } else {
-        echo $percent . "% match, ";
-    }
-    $percent = 100 - (round($entityFreq/count($activityIDs), 3) * 100);
-    if($percent < 50) {
-        echo "<b>" . $percent . "% extraneous</b>)</p>";
-    } else {
-        echo $percent . "% extraneous)</p>";
-    }
-    */
+    $bigArr = array(
+        "group" => $getEntityInformation["Name"],
+        "matching_events" => "" . $numMatchingActivities . "",
+        "total_events" => "" . $numEventsWitnessed . "",
+        "percent_of_events" => "" . round((100 * $percentMatchingEvents), 2) . "",
+        "matching_ttps" => "" . $numUniqMatchingActivities . "",
+        "available_ttps" => "" . $numTTPsAvailable . "",
+        "percent_of_ttps" => "" . round((100 * $percentMatchingTTPs), 2) . "",
+        "coverage" => $numTTPCoverage . "/" . $numTotalCoverage . "",
+        "percent_of_coverage" => "" . round((100 * $percentMatchingCoverage), 2) . "",
+        "final_value" => "" . round((100 * ($percentMatchingEvents * $percentMatchingTTPs * $percentMatchingCoverage)), 2) . ""
+    );
+    $arrOut[] = $bigArr;
 }
 
-echo "</div></div></body></html>";
+echo json_encode($arrOut);
 
 // Terminates all utilized connections and ends script
 include "./inc/close.php";
