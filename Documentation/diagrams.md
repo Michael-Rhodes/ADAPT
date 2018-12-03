@@ -1,3 +1,5 @@
 # Diagrams
 
 
+:q
+:wq

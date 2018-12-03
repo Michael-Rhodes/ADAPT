@@ -29,4 +29,3 @@ select * from `known_groups`;
 select * from `known_malware`
 ```
 
---> for now, same as attack_phases

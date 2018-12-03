@@ -36,12 +36,12 @@ export class ChartsComponent implements OnInit {
   startFilter = (d: Date): boolean => {
     const day = d.getDay();
     // Prevent Saturday and Sunday from being selected.
-    return day !== 0 && day !== 6;
+    return true;
   }
   endFilter = (d: Date): boolean => {
     const day = d.getDay();
     // Prevent Saturday and Sunday from being selected.
-    return day !== 0 && day !== 6;
+    return true;
   }
   public logData = new Array();
   public aptGroupNames = new Array();
@@ -136,9 +136,10 @@ export class ChartsComponent implements OnInit {
     eDate.setMinutes(endTime.minute);
     eDate.setSeconds(endTime.second);
 
-    var startTimestamp = sDate.getTime();
-    var endTimestamp = eDate.getTime();
-
+    var startTimestamp = (sDate.getTime() / 1000);
+    var endTimestamp = (eDate.getTime() / 1000);
+    //console.log("Start Timeslice: " + startTimestamp);
+    //console.log("End time slice: " + endTimestamp);
     var self = this;
 
     // Call the API
@@ -146,7 +147,6 @@ export class ChartsComponent implements OnInit {
       var finalVals = [];
       var finalNames = [];
 
-      // Your data will end up here
       for( let entry in data){
         //console.log("added in NAMES: "+ data[entry]['group']);
         finalNames.push(data[entry]['group']);
