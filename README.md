@@ -13,4 +13,5 @@ Active Detection of Advanced Persistent Threats
 ## APT Workflow
 
 ![APT workflow](Documentation/screenshots/APT_Diagram.svg)
-Source: B. E. Strom, A. Applebaum, D. P. Miller, K. C. Nickels, A. G. Pennington, and C. B. Thomas, “MITRE ATT&CK: Design and Philosophy,” MITRE Corporation, 2018.
+
+#### Source: B. E. Strom, A. Applebaum, D. P. Miller, K. C. Nickels, A. G. Pennington, and C. B. Thomas, “MITRE ATT&CK: Design and Philosophy,” MITRE Corporation, 2018.
