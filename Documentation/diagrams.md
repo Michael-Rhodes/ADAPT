@@ -1,5 +1,0 @@
-# Diagrams
-
-
-:q
-:wq

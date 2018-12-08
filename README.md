@@ -3,14 +3,14 @@ Active Detection of Advanced Persistent Threats
 
 ## Table of Contents:
 
-1. [Team Meeting Notes](/Documentation/team_meeting_notes.md)
-2. [Database Docs](/Documentation/db_docs.md)
-3. [Windows](Windows/)
-4. [MySql Database](db/)
-5. [Setup Environment](Setup-Environment/)
-6. [Web Console](adapt-frontend/)
-7. [Elk](elk/)
+1. [Database Docs](/Documentation/db_docs.md)
+2. [Windows](Windows/)
+3. [MySql Database](db/)
+4. [Setup Environment](Setup-Environment/)
+5. [Web Console](adapt-frontend/)
+6. [Elk](elk/)
 
 ## APT Workflow
 
 ![APT workflow](Documentation/screenshots/APT_Diagram.svg)
+Source: B. E. Strom, A. Applebaum, D. P. Miller, K. C. Nickels, A. G. Pennington, and C. B. Thomas, “MITRE ATT&CK: Design and Philosophy,” MITRE Corporation, 2018.
